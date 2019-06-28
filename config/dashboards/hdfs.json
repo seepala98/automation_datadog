@@ -1,0 +1,78 @@
+{
+  "title":"hdfs_dashboard",
+  "widgets":[{
+    "definition":{
+  "type": "timeseries",
+  "requests": [
+    {
+      "q": "avg:kafka.consumer_lag{$var1,version:1.1.1} by {topic}",
+      "type": "line",
+      "conditional_formats": []
+    }
+  ]
+}
+},
+
+{
+  "definition":{
+  "type": "timeseries",
+  "requests": [
+    {
+      "q": "avg:kafka.consumer_lag{$var2} by {topic}",
+      "type": "area",
+      "conditional_formats": []
+    }
+  ]
+}
+},
+
+{
+  "definition":{
+  "type": "timeseries",
+  "requests": [
+    {
+      "q": "avg:kafka.consumer_lag{$var3,version:1.1.1} by {topic}",
+      "type": "area",
+      "conditional_formats": []
+    }
+  ]
+}
+},
+
+{
+  "definition":{
+  "type": "timeseries",
+  "requests": [
+    {
+      "q": "avg:hdfs.datanode.dfs_remaining{$var4}",
+      "type": "line",
+      "conditional_formats": []
+    }
+  ]
+}
+}
+],
+"layout_type": "ordered",
+"description": "prod_hdfs_test",
+"template_variables" : [{
+    "name": "var1",
+    "prefix": "consumer_group",
+    "default": "murali-config-consumer-latest-offset1-all-v14"
+},
+{
+    "name": "var2",
+    "prefix": "consumer_group",
+    "default": "murali-metrics-pulsehd-may25"
+},
+{
+    "name": "var3",
+    "prefix": "consumer_group",
+    "default": "murali-metrics-all-v2"
+},
+{
+    "name": "var4",
+    "prefix": "env",
+    "default": "prod_xialpha"
+}
+]
+}

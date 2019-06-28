@@ -1,0 +1,441 @@
+{
+"title": "pod_automation_test",
+"widgets" : [{
+"definition":{
+  "type": "timeseries",
+  "requests": [
+    {
+      "q": "avg:envoy.server.uptime{$var1}"
+    }
+  ]
+}
+},
+
+{
+"definition":{
+  "type": "timeseries",
+  "requests": [
+    {
+      "q": "avg:envoy.cluster.upstream_rq_5xx{$var1}.as_rate()"
+    }
+  ]
+}
+},
+
+{
+"definition":{
+  "type": "timeseries",
+  "requests": [
+    {
+      "q": "(avg:envoy.cluster.upstream_rq_5xx{$var1} by {cluster_name}.as_count()*100)/avg:envoy.cluster.upstream_rq_total{$var1} by {cluster_name}.as_count()"
+    }
+  ]
+}
+},
+
+{
+"definition":{
+  "type": "timeseries",
+  "requests": [
+    {
+      "q": "(avg:envoy.http.downstream_rq_5xx{$var1}.as_count()*100)/avg:envoy.http.downstream_rq_total{$var1}.as_count()"
+    }
+  ]
+}
+},
+
+{
+"definition":{
+  "type": "timeseries",
+  "requests": [
+    {
+      "q": "avg:network.http.can_connect{$url1}.rollup(avg, 45)*100" 
+    }
+  ]
+}
+},
+
+{
+"definition":{
+  "type": "timeseries",
+  "requests": [
+    {
+      "q": "avg:envoy.cluster.upstream_rq_total{$var1}.as_count()" 
+    }
+  ]
+}
+},
+
+{
+"definition":{
+  "type": "timeseries",
+  "requests": [
+    {
+      "q": "avg:network.http.can_connect{$url2}.rollup(avg, 45)*100"
+    }
+  ]
+}
+},
+
+{
+"definition":{
+  "type": "timeseries",
+  "requests": [
+    {
+      "q": "avg:envoy.http.downstream_cx_rx_bytes_total{$var3,$var5}.as_rate()"
+    }
+  ]
+}
+},
+
+{
+"definition":{
+  "type": "timeseries",
+  "requests": [
+    {
+      "q": "avg:envoy.http.downstream_rq_5xx{$var4,$var3,$var1} by {cluster_name}.as_rate()"
+    }
+  ],
+  "events": [
+    {
+      "q": "sources:alert tags:instance:envoy ",
+      "tags_execution": "and"
+    }
+  ]
+}
+},
+
+{
+"definition":{
+  "type": "timeseries",
+  "requests": [
+    {
+      "q": "avg:envoy.http.downstream_cx_rx_bytes_total{$var3,$var5}.as_rate()"
+    }
+  ]
+}
+},
+
+{
+"definition":{
+  "type": "timeseries",
+  "requests": [
+    {
+      "q": "avg:system.net.packets_in.error{$var2}" 
+    }
+  ]
+}
+},
+
+{
+"definition":{
+  "type": "timeseries",
+  "requests": [
+    {
+      "q": "avg:system.net.nf.conntrack_count{$var2}, avg:system.net.nf.conntrack_max{$var2}"
+    }
+  ]
+}
+},
+
+{
+"definition":{
+"type": "timeseries",
+  "requests": [
+    {
+      "q": "avg:envoy.http.rq_total{$var3,$var4,$var5}.as_rate()"
+    }
+  ],
+  "events": [
+    {
+      "q": "sources:alert tags:instance:envoy ",
+      "tags_execution": "and"
+    }
+  ]
+}
+},
+
+{
+"definition":{
+  "type": "timeseries",
+  "requests": [
+    {
+      "q": "avg:system.cpu.idle{$var2}, avg:system.cpu.system{$var6}, avg:system.cpu.iowait{$var2}, avg:system.cpu.user{$var2}, avg:system.cpu.stolen{$var2}, avg:system.cpu.guest{$var2}"
+    }
+  ]
+}
+},
+
+{
+"definition":{
+  "type": "timeseries",
+  "requests": [
+    {
+      "q": "avg:system.load.1{$var2}"
+    },
+    {
+      "q": "avg:system.load.5{$var2}"
+    },
+    {
+      "q": "avg:system.load.15{$var2}" 
+    }
+  ]
+}
+},
+
+{
+"definition":{
+  "type": "timeseries",
+  "requests": [
+    {
+      "q": "sum:system.mem.usable{$var2}, sum:system.mem.total{$var2}-sum:system.mem.usable{$var2}"
+    }
+  ]
+}
+},
+
+{
+"definition":{
+  "type": "timeseries",
+  "requests": [
+    {
+      "q": "avg:system.swap.free{$var2}, avg:system.swap.used{$var2}"
+    }
+  ]
+}
+},
+
+{
+"definition":{
+  "type": "timeseries",
+  "requests": [
+    {
+      "q": "max:system.disk.in_use{$var2} by {device}*100" 
+    }
+  ]
+}
+},
+
+{
+"definition":{
+  "type": "timeseries",
+  "requests": [
+    {
+      "q": "max:system.io.await{$var2} by {device}"
+    }
+  ]
+}
+},
+
+{
+"definition":{
+  "type": "timeseries",
+  "requests": [
+    {
+      "q": "sum:system.net.bytes_rcvd{$var2}"
+    },
+    {
+      "q": "0-sum:system.net.bytes_sent{$var2}"
+    }
+  ]
+}
+},
+
+{
+"definition":{
+  "type": "timeseries",
+  "requests": [
+    {
+      "q": "avg:system.net.tcp.in_segs{$var2}"
+    }
+  ]
+}
+},
+
+{
+"definition":{
+  "type": "timeseries",
+  "requests": [
+    {
+      "q": "avg:system.net.tcp.listen_drops{$var2}"
+    }
+  ]
+}
+},
+
+{
+"definition":{
+  "type": "timeseries",
+  "requests": [
+    {
+      "q": "avg:envoy.cluster.upstream_rq_total{$var4,$var1} by {cluster_name}.as_rate().rollup(avg)"
+    }
+  ]
+}
+},
+
+{
+"definition":{
+  "type": "timeseries",
+  "requests": [
+    {
+      "q": "max:system.net.tcp.backlog_drops{$var2} by {env}"
+    }
+  ]
+}
+},
+
+{
+"definition":{
+  "type": "timeseries",
+  "requests": [
+    {
+      "q": "top(avg:envoy.http.downstream_rq_4xx{$var1}.as_count(), 10, 'mean', 'desc')"
+    }
+  ]
+}
+},
+
+{
+"definition":{
+  "type": "timeseries",
+  "requests": [
+    {
+      "q": "top(avg:envoy.server.live{$var1}, 10, 'mean', 'desc')"
+    }
+  ]
+}
+},
+
+{
+"definition":{
+  "type": "timeseries",
+  "requests": [
+    {
+      "q": "avg:envoy.cluster.health_check.healthy{$var1}"
+    }
+  ]
+}
+},
+
+{
+"definition":{
+  "type": "timeseries",
+  "requests": [
+    {
+      "q": "avg:envoy.server.total_connections{$var5,$var1}"
+    }
+  ]
+}
+},
+
+{
+"definition":{
+  "type": "timeseries",
+  "requests": [
+    {
+      "q": "avg:system.net.tcp.listen_overflows{$var2}"
+    }
+  ]
+}
+},
+
+{
+"definition":{
+  "type": "timeseries",
+  "requests": [
+    {
+      "q": "avg:system.net.tcp.retrans_segs{$var2}"
+    }
+  ]
+}
+},
+
+{
+"definition":{
+  "type": "timeseries",
+  "requests": [
+    {
+      "q": "avg:system.net.tcp.failed_retransmits{$var2}"
+    }
+  ]
+}
+},
+
+{
+"definition":{
+  "type": "timeseries",
+  "requests": [
+    {
+      "q": "avg:envoy.cluster.upstream_rq_retry_overflow{$var1} by {cluster_name}.as_count()"
+    }
+  ]
+}
+},
+
+{
+"definition":{
+  "type": "timeseries",
+  "requests": [
+    {
+      "q": "avg:envoy.cluster.upstream_rq_retry{$var1} by {cluster_name}.as_count()"
+    }
+  ]
+}
+},
+
+{
+"definition":{
+  "type": "timeseries",
+  "requests": [
+    {
+      "q": "avg:system.net.tcp.listen_drops{$var2}"
+    }
+  ]
+}
+}
+],
+"layout_type": "ordered",
+"description": "prod_automation_test",
+"template_variables" : [{
+    "name": "var1",
+    "prefix": "instance",
+    "default": "prod-envoy"
+},
+    {
+    "name": "url1",
+    "prefix": "url",
+    "default": "https://insights.nutanix.com/nusights/services/v1/test"
+},
+    {
+    "name": "url2",
+    "prefix": "url",
+    "default": "http://10.22.128.21:9901/stats"
+},
+{
+    "name": "var2",
+    "prefix": "host",
+    "default": "rno_insights_envoy_1"
+},
+{
+    "name": "var3",
+    "prefix": "stat_prefix",
+    "default": "envoy_port_443  "
+},
+{
+    "name": "var4",
+    "prefix": "host",
+    "default": "NTNX-10-4-23-50-A-CVM"
+},
+{
+    "name": "var5",
+    "prefix": "env",
+    "default": "prod"
+},
+{
+    "name": "var6",
+    "prefix": "host",
+    "default": "drt-eng-insights-dev-01"
+}
+]
+}

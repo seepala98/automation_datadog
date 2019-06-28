@@ -1,0 +1,208 @@
+{
+  "title" : "flexUI_automation",
+  "widgets" :[
+  {"definition":{
+  "type": "query_value",
+  "autoscale": true,
+  "custom_unit": "%",
+  "precision": 2,
+  "requests": [
+    {
+      "q": "avg:network.http.can_connect{$url1}*100",
+      "type": null,
+      "aggregator": "avg",
+      "conditional_formats": [
+        {
+          "palette": "red_on_white",
+          "value": 99.9,
+          "comparator": "<="
+        },
+        {
+          "palette": "green_on_white",
+          "value": 99.9,
+          "comparator": ">"
+        }
+      ]
+    }
+  ]
+}
+},
+
+{
+  "definition":{
+  "type": "timeseries",
+  "requests": [
+    {
+      "q": "avg:flexui.query.cluster_count{$var1}",
+      "type": "line",
+      "conditional_formats": []
+    }
+  ]
+}
+},
+
+{
+  "definition":{
+  "type": "timeseries",
+  "requests": [
+    {
+      "q": "avg:flexui.query.es_execute_time_msec{$var2,$var1}, avg:flexui.query.es_execute_time_msec{$var3,$var1}",
+      "type": "line",
+      "conditional_formats": []
+    }
+  ]
+}
+},
+
+{
+  "definition":{
+  "type": "timeseries",
+  "requests": [
+    {
+      "q": "avg:flexui.query.es_execute_time_msec{$var4,$var1}, avg:flexui.query.es_execute_time_msec{$var5,$var1}",
+      "type": "line",
+      "conditional_formats": []
+    }
+  ]
+}
+},
+
+{
+  "definition":{
+  "type": "timeseries",
+  "requests": [
+    {
+      "q": "avg:flexui.query.es_execute_time_msec{$var6,$var1}, avg:flexui.query.es_execute_time_msec{$var7,$var1}",
+      "type": "line",
+      "conditional_formats": []
+    }
+  ]
+}
+},
+
+{
+  "definition":{
+  "type": "timeseries",
+  "requests": [
+    {
+      "q": "avg:flexui.query.es_execute_time_msec{$var8,$var1}, avg:flexui.query.es_execute_time_msec{$var9,$var1}",
+      "type": "line",
+      "conditional_formats": []
+    }
+  ]
+}
+},
+
+{
+  "definition":{
+  "type": "timeseries",
+  "requests": [
+    {
+      "q": "avg:flexui.query.es_execute_time_msec{$var10,$var1}, avg:flexui.query.es_execute_time_msec{$var11,$var1}",
+      "type": "line",
+      "conditional_formats": []
+    }
+  ]
+}
+},
+
+{
+  "definition":{
+  "type": "timeseries",
+  "requests": [
+    {
+      "q": "avg:flexui.query.es_execute_time_msec{$var12,$var1}",
+      "type": "line",
+      "conditional_formats": []
+    }
+  ]
+}
+},
+
+{
+  "definition":{
+  "type": "timeseries",
+  "requests": [
+    {
+      "q": "avg:flexui.query.es_execute_time_msec{$var13}",
+      "type": "line",
+      "conditional_formats": []
+    }
+  ]
+}
+}
+],
+"layout_type": "ordered",
+"description": "prod_fluxui_dashboard_test",
+"template_variables" : [{
+    "name": "url1",
+    "prefix": "url",
+    "default": "https://10.4.245.194/login"
+},
+{
+    "name": "var1",
+    "prefix": "env",
+    "default": "prod"
+},
+{
+    "name": "var2",
+    "prefix": "entity",
+    "default": "config_disk_default_historical"
+},
+{
+    "name": "var3",
+    "prefix": "entity",
+    "default": "config_disk_default_latest"
+},
+{
+    "name": "var4",
+    "prefix": "entity",
+    "default": "config_cluster_default_historical"
+},
+{
+    "name": "var5",
+    "prefix": "entity",
+    "default": "config_cluster_default_latest"
+},
+{
+    "name": "var6",
+    "prefix": "entity",
+    "default": "config_node_default_historical"
+},
+{
+    "name": "var7",
+    "prefix": "entity",
+    "default": "config_node_default_latest"
+},
+{
+    "name": "var8",
+    "prefix": "entity",
+    "default": "config_vm_default_historical"
+},
+{
+    "name": "var9",
+    "prefix": "entity",
+    "default": "config_vm_default_latest"
+},
+{
+    "name": "var10",
+    "prefix": "entity",
+    "default": "config_storage_pool_default_historical"
+},
+{
+    "name": "var11",
+    "prefix": "entity",
+    "default": "config_storage_pool_default_latest"
+},
+{
+    "name": "var12",
+    "prefix": "entity",
+    "default": "metric_telemetry_cfs_rpc_stats_metric_historical"
+},
+{
+    "name": "var13",
+    "prefix": "entity",
+    "default": "metric_cluster_metric_historical"
+}
+]
+}
